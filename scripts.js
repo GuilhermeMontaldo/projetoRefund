@@ -1,10 +1,11 @@
-const { createElement } = require("react")
-
 // Seleciona os elemnetos do formulário.
 const form = document.querySelector("form")
 const amount = document.getElementById("amount")
 const expense = document.getElementById("expense")
 const category = document.getElementById("category")
+
+// Seleciona os elementos da lista
+const expenseList = document.querySelector("ul")
 
 // Captura o evento de input paa formatar o valor
 amount.oninput = () => {
@@ -55,8 +56,16 @@ function expenseAdd(newExpense) {
         const expenseItem = document.createElement("li")
         expenseItem.classList.add("expense")
 
+        // Cria o ícone da categoria.
+        const expenseIcon = document.createElement("img")
+        expenseIcon.setAttribute("src", `./img/${newExpense.category_id}.svg`)
+        expenseIcon.setAttribute("alt", newExpense.category_name)
 
-        
+        // adiciona as informações no item.
+        expenseItem.append(expenseIcon)
+
+        // Adiciona o item na lista.
+        expenseList.append(expenseItem)
     } catch (error) {
         alert("Não foi possivel atualizar a lista de despesas")
         console.log(error)
