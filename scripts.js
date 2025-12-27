@@ -6,7 +6,7 @@ const category = document.getElementById("category");
 
 // Seleciona os elementos da lista
 const expenseList = document.querySelector("ul");
-const expensesTotal = document.querySelector("aside header h2")
+const expensesTotal = document.querySelector("aside header h2");
 const expensesQuantity = document.querySelector("aside header p span");
 
 // Captura o evento de input paa formatar o valor
@@ -140,24 +140,31 @@ function updateTotals() {
       }
 
       // Incrementa o valor total
-      total += Number(value)
+      total += Number(value);
     }
 
     // Cria a span para adicionar o R$ formatado
-    const symbolBRL = document.createElement("small")
-    symbolBRL.textContent = "R$"
+    const symbolBRL = document.createElement("small");
+    symbolBRL.textContent = "R$";
 
     // Formata o valor e remove o simbolo que será exibido pela small com um estilo customizado
-    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "");
 
     // Limpa o conteúdo do elemento
-    expensesTotal.innerHTML = ""
+    expensesTotal.innerHTML = "";
 
     // Adiciona o símbolo da moeda e o valor formatado
-    expensesTotal.append(symbolBRL, total)
-
+    expensesTotal.append(symbolBRL, total);
   } catch (error) {
     console.log(error);
     alert("Não foi possivel atualizar os totais.");
   }
 }
+
+// Evento que captura o clique nos itens da lista.
+expenseList.addEventListener("click", function (event) {
+  // Verifica se o elemento clicado é o ícone de remover
+  if (event.target.classList.contains("remove-icon")) {
+    console.log(event)
+  }
+});
